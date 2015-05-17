@@ -1,0 +1,4 @@
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\bin\Debug\MyFixIt.Logging.dll
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\bin\Debug\MyFixIt.Logging.pdb
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\obj\Debug\MyFixIt.Logging.dll
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\obj\Debug\MyFixIt.Logging.pdb

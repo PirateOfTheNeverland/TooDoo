@@ -1,0 +1,2 @@
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDooSvc\bin\Debug\ServiceConfiguration.cscfg
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDooSvc\bin\Debug\ServiceDefinition.csdef

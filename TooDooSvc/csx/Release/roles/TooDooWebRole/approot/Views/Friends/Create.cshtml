@@ -1,0 +1,64 @@
+@model TooDooWebRole.Models.FriendEntry
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    
+    <fieldset class="form-horizontal">
+        <legend>Add buddy</legend>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.Name)
+				@Html.ValidationMessageFor(model => model.Name, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Notes, new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+                @Html.TextAreaFor(model => model.Notes)
+				@Html.ValidationMessageFor(model => model.Notes, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="form-group">
+			<div class="col-md-10">                
+                
+				@Html.HiddenFor(model => model.Owner, new { Value = ViewBag.Owner })
+				@Html.ValidationMessageFor(model => model.Owner, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="form-group">
+            &nbsp;
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add buddy" class="btn btn-primary btn-large" />
+            </div>
+
+        </div>
+    </fieldset>
+    
+    
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+    function ddListChange()
+    {
+        var selTypeText = $("#DDLFriends option:selected").text();
+        $("#Owner").val(selTypeText);
+        
+    }
+    </script>
+}
+

@@ -1,0 +1,47 @@
+@model IEnumerable<TooDooSvc.Persistence.FixItTask>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>TooDoos Assigned to You</h2>
+
+@if (!Model.Any()) {
+    <br />
+    <div>Just chill and relax. Nothing toodoo here.</div>
+    <br />
+}
+else {
+    <br />
+    <div>Here's what you have toodoo today:</div>
+    <br />
+    <table class="table table-striped">
+        <tr>
+        
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+        
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id=item.FixItTaskId }) |
+                @Html.ActionLink("Edit", "Edit", new { id=item.FixItTaskId }) 
+            </td>
+        </tr>
+    }
+
+    </table>    
+}

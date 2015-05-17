@@ -1,0 +1,9 @@
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\bin\Release\MyFixIt.Logging.dll
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\bin\Release\MyFixIt.Logging.pdb
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\obj\Release\MyFixIt.Logging.dll
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\obj\Release\MyFixIt.Logging.pdb
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\bin\Release\MyFixIt.Logging.dll.config
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\bin\Release\EntityFramework.dll
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\bin\Release\EntityFramework.xml
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\bin\Release\EntityFramework.SqlServer.xml

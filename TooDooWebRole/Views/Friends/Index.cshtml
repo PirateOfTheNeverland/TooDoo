@@ -1,0 +1,61 @@
+﻿@model IEnumerable<TooDooWebRole.Models.FriendEntry>
+
+@{
+    ViewBag.Title = "Here's your buddy list";
+}
+
+<h2>List of your buddies</h2>
+
+@if (!Model.Any()) {
+    <br />
+    <div>You don't have friends!!! =) But it's OK, go ahead and add you first buddy!</div>
+    <br />
+}
+else {
+<br />
+<div>Let's see who we have here:</div>
+<br />
+<table class="table table-striped">
+    <tr>
+        <th>Buddy's name</th>
+        <th>Notes</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @if (@item.IsBlocked)
+         {
+            <td style="background-color: #108080;">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td style="background-color: #108080;">
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.FriendId }, null) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.FriendId }, null) |
+                @Html.ActionLink("Unblock", "Unblock", new { id=item.FriendId }, null) 
+            </td>
+        }
+         else
+        {
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>            
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.FriendId }, null) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.FriendId }, null) |
+                @Html.ActionLink("Block", "Block", new { id=item.FriendId }, null) 
+            </td>
+        }
+    </tr>
+}
+
+</table>
+}
+<a href="/Friends/Create">Add buddy</a>

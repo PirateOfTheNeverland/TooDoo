@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="TooDooSvc" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-06.2.4">
+  <Role name="TooDooWebRole">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="AzureConnectionString" value="DefaultEndpointsProtocol=https;AccountName=toodoo;AccountKey=/1iTcXUIjCB1xyJFWEOCXjSsMWnBR1CK8sGTv1tzGrqAFSMKE7+Cldkd7Nkxew6eHxZFeV4qFxnXfSekEz4ikw==" />
+    </ConfigurationSettings>
+    <Certificates>
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

@@ -1,0 +1,5 @@
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\ToDoList\C#\MyFixIt.Logging\bin\Release\MyFixIt.Logging.dll
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\ToDoList\C#\MyFixIt.Logging\bin\Release\MyFixIt.Logging.pdb
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\ToDoList\C#\MyFixIt.Logging\obj\Release\MyFixIt.Logging.csprojResolveAssemblyReference.cache
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\ToDoList\C#\MyFixIt.Logging\obj\Release\MyFixIt.Logging.dll
+C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\ToDoList\C#\MyFixIt.Logging\obj\Release\MyFixIt.Logging.pdb
