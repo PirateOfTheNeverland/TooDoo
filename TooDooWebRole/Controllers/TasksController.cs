@@ -13,6 +13,8 @@ namespace TooDooWebRole.Controllers
     [Authorize]
     public class TasksController : Controller
     {
+        private readonly TooDooManagement manager = null;
+
         private IFixItTaskRepository fixItRepository = null;
         private IPhotoService photoService = null;
         private IFixItQueueManager queueManager = null;
@@ -22,6 +24,7 @@ namespace TooDooWebRole.Controllers
             fixItRepository = repository;
             photoService = photoStore;
             this.queueManager = queueManager;
+            manager = new TooDooManagement();
         }
 
         public TasksController()
@@ -29,13 +32,14 @@ namespace TooDooWebRole.Controllers
             fixItRepository = null;
             photoService = null;
             this.queueManager = null;
+            manager = new TooDooManagement();
         }
 
         // GET: /FixIt/
         public async Task<ActionResult> Status()
         {
             string currentUser = User.Identity.Name;
-            var result = await fixItRepository.FindTasksByCreatorAsync(currentUser);
+            var result = await manager.FindToodoosByCreatorAsync(currentUser);
 
             return View(result);
         }
@@ -86,7 +90,7 @@ namespace TooDooWebRole.Controllers
         // POST: /Tasks/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "FixItTaskId,CreatedBy,Owner,Title,Notes,PhotoUrl,IsDone")]FixItTask fixittask, HttpPostedFileBase photo)
+        public async Task<ActionResult> Create([Bind(Include = "TooDooId,CreatedBy,Owner,Title,Notes,PhotoUrl,IsDone,CreatedDate,LastModifiedDate")]TooDooEntry toodoo, HttpPostedFileBase photo)
         {
             if (ModelState.IsValid)
             {
@@ -94,16 +98,16 @@ namespace TooDooWebRole.Controllers
 //                {
 //                    var IsBlocked = db.FriendEntries.SqlQuery("SELECT * FROM dbo.FriendEntries WHERE Name=@p0 AND Owner=@p1",
 //                        new object[] { new SqlParameter("p0", fixittask.CreatedBy), new SqlParameter("p1", fixittask.Owner) });
-                    fixittask.CreatedBy = User.Identity.Name;
-                    fixittask.PhotoUrl = await photoService.UploadPhotoAsync(photo);
+                    //toodoo.CreatedBy = User.Identity.Name;
+                    toodoo.PhotoUrl = await photoService.UploadPhotoAsync(photo);
 
-                    await fixItRepository.CreateAsync(fixittask);
+                    await manager.CreateAsync(toodoo);
 
                     return RedirectToAction("Success");
 //                }
             }
 
-            return View(fixittask);
+            return View(toodoo);
         }
 
         //

@@ -1,4 +1,4 @@
-@model IEnumerable<TooDooSvc.Persistence.FixItTask>
+@model IEnumerable<TooDooWebRole.Models.TooDooEntry>
 
 @{
     ViewBag.Title = "Index";
@@ -37,8 +37,8 @@ else {
                 @Html.DisplayFor(modelItem => item.Notes)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new { id=item.FixItTaskId }) |
-                @Html.ActionLink("Edit", "Edit", new { id=item.FixItTaskId }) 
+                @Html.ActionLink("Details", "Details", new { id=item.TooDooId }) |
+                @Html.ActionLink("Edit", "Edit", new { id=item.TooDooId }) 
             </td>
         </tr>
     }

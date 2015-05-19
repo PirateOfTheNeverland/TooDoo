@@ -1,4 +1,4 @@
-@model TooDooSvc.Persistence.FixItTask
+@model TooDooWebRole.Models.TooDooEntry
 
 @{
     ViewBag.Title = "Create";
@@ -33,9 +33,12 @@
             @Html.LabelFor(model => model.Owner, new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
                 @Html.DropDownList("DDLFriends", (IEnumerable<SelectListItem>)ViewData["FriendList"], (string)ViewData["CreatedBy"] , 
-                                    new { onchange = "ddListChange()" })         
+                                    new { onchange = "ddListChange()", onopen = "ddListOpen()" })         
 				@Html.HiddenFor(model => model.Owner, new { Value = ViewData["CreatedBy"] })
 				@Html.ValidationMessageFor(model => model.Owner, null, new { @class = "help-inline" })
+                @Html.HiddenFor(model => model.CreatedBy, new { Value = ViewData["CreatedBy"] })
+                @Html.HiddenFor(model => model.CreatedDate, new { Value = DateTime.Now })
+                @Html.HiddenFor(model => model.LastModifiedDate, new { Value = DateTime.Now })
 			</div>
 		</div>
 

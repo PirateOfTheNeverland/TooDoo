@@ -2,16 +2,19 @@
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace MyFixIt.Controllers
+using TooDooWebRole.Models;
+
+namespace TooDooWebRole.Controllers
 {
      [Authorize]
     public class DashboardController : Controller
     {
-        private readonly IFixItTaskRepository fixItRepository = null;
+        private readonly TooDooManagement manager = null;
 
-        public DashboardController(IFixItTaskRepository repository)
+        public DashboardController() { manager = new TooDooManagement(); }
+        public DashboardController(TooDooManagement toodooManager)
         {
-            fixItRepository = repository;
+            manager = toodooManager;
         }
 
         //
@@ -19,7 +22,7 @@ namespace MyFixIt.Controllers
         public async Task<ActionResult> Index()
         {
             string currentUser = User.Identity.Name;
-            var result = await fixItRepository.FindOpenTasksByOwnerAsync(currentUser);
+            var result = await manager.FindOpenToodoosByOwnerAsync(currentUser);
 
             return View(result);
         }
@@ -28,56 +31,56 @@ namespace MyFixIt.Controllers
         // GET: /Dashboard/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            FixItTask fixItTask = await fixItRepository.FindTaskByIdAsync(id);
+            TooDooEntry toodoo = await manager.FindTooDooByIdAsync(id);
 
-            if (fixItTask == null)
+            if (toodoo == null)
             {
                 return HttpNotFound();
             }
-            
-            return View(fixItTask);
+
+            return View(toodoo);
         }
 
         //
         // GET: /Dashboard/Edit/5
         public async Task<ActionResult> Edit(int id)
         {
-            FixItTask fixittask = await fixItRepository.FindTaskByIdAsync(id);
-            if (fixittask == null)
+            TooDooEntry toodoo = await manager.FindTooDooByIdAsync(id);
+            if (toodoo == null)
             {
                 return HttpNotFound();
             }
 
             // Verify logged in user owns this FixIt task.
-            if (User.Identity.Name != fixittask.Owner)
+            if (User.Identity.Name != toodoo.Owner)
             {
                return HttpNotFound();
             }
 
-            return View(fixittask);
+            return View(toodoo);
         }
 
         //
         // POST: /Dashboard/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, [Bind(Include = "CreatedBy,Owner,Title,Notes,PhotoUrl,IsDone")]FormCollection form)
+        public async Task<ActionResult> Edit(int id, [Bind(Include = "CreatedBy,Owner,Title,Notes,PhotoUrl,IsDone,CreatedDate,LastModifiedDate")]FormCollection form)
         {
-            FixItTask fixittask = await fixItRepository.FindTaskByIdAsync(id);
+            TooDooEntry toodoo = await manager.FindTooDooByIdAsync(id);
 
             // Verify logged in user owns this FixIt task.
-            if (User.Identity.Name != fixittask.Owner)
+            if (User.Identity.Name != toodoo.Owner)
             {
                return HttpNotFound();
             }
 
-            if (TryUpdateModel(fixittask, form))
+            if (TryUpdateModel(toodoo, form))
             {
-                await fixItRepository.UpdateAsync(fixittask);
+                await manager.UpdateAsync(toodoo);
                 return RedirectToAction("Index");
             }
 
-            return View(fixittask);
+            return View(toodoo);
         }
     }
 }

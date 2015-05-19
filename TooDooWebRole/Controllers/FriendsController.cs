@@ -12,11 +12,8 @@ namespace TooDooWebRole.Controllers
     [Authorize]
     public class FriendsController : Controller
     {
-        private IFixItTaskRepository fixItRepository = null;
-
-        public FriendsController(IFixItTaskRepository repository)
+        public FriendsController()
         {
-            fixItRepository = repository;
         }
 
         //

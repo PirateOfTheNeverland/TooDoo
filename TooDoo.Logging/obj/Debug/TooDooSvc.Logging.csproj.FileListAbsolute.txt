@@ -7,3 +7,12 @@ C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\
 C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\obj\Debug\MyFixIt.Logging.dll
 C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDoo.Logging\obj\Debug\MyFixIt.Logging.pdb
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\MyFixIt.Logging.dll.config
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\MyFixIt.Logging.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\MyFixIt.Logging.pdb
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\EntityFramework.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\EntityFramework.xml
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\obj\Debug\MyFixIt.Logging.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\obj\Debug\MyFixIt.Logging.pdb
