@@ -45,6 +45,7 @@ namespace TooDooWebRole.Models
         [Display(Name="Notes")]
         public string Notes { get; set; }
         [StringLength(200)]
+        [Display(Name = "TooDoo attachment")]
         public string PhotoUrl { get; set; }
         public bool IsDone { get; set; }
         [Required]
@@ -52,6 +53,12 @@ namespace TooDooWebRole.Models
         public DateTime CreatedDate { get; set; }
         [Required]
         public DateTime LastModifiedDate { get; set; }
+        [StringLength(1000)]
+        [Display(Name = "Report")]
+        public string Report { get; set; }
+        [StringLength(200)]
+        [Display(Name = "Report attachment")]
+        public string ReportPhotoUrl { get; set; }
     }
 
     public class TooDooManagement

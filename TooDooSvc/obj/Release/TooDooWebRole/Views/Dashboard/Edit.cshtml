@@ -1,4 +1,4 @@
-@model TooDooSvc.Persistence.FixItTask
+@model TooDooWebRole.Models.TooDooEntry
 
 @{
     ViewBag.Title = "Edit";
@@ -11,7 +11,7 @@
     <fieldset class="form-horizontal">
         <legend>Update TooDoo</legend>
 
-        @Html.HiddenFor(model => model.FixItTaskId)
+        @Html.HiddenFor(model => model.TooDooId)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
@@ -34,6 +34,7 @@
 			<div class="controls">
 				@Html.EditorFor(model => model.IsDone)
 				@Html.ValidationMessageFor(model => model.IsDone, null, new { @class = "help-inline" })
+                @Html.HiddenFor(model => model.LastModifiedDate, new { Value = DateTime.Now })
 			</div>
 		</div>
 

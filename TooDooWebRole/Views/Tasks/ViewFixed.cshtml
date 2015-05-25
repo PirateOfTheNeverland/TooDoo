@@ -1,0 +1,65 @@
+@model TooDooWebRole.Models.TooDooEntry
+
+@{
+    ViewBag.Title = "Details";
+}
+<table class="table table-striped">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Title)</th>
+        <td>
+            @Html.DisplayFor(model => model.Title)
+        </td>
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.CreatedBy)</th>
+        <td>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </td>
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Notes)</th>
+        <td>
+            @Html.DisplayFor(model => model.Notes)
+        </td>
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Report)</th>
+        <td>
+            @Html.DisplayFor(model => model.Report)
+        </td>
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.CreatedDate)</th>
+        <td>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </td>
+    </tr>
+</table>
+
+@if(Model.ReportPhotoUrl != null) {
+<fieldset>
+	<legend>@Html.DisplayFor(model => model.Report)</legend>
+    <dl>@Html.DisplayNameFor(model => model.ReportPhotoUrl)
+    </dl>
+	<dl>        		
+        <dd>
+            <img src="@Model.ReportPhotoUrl" title="@Model.Report" />
+		</dd>
+	</dl>
+</fieldset>
+}
+@if(Model.ReportPhotoUrl != null) {
+<fieldset>
+	<legend>@Html.DisplayFor(model => model.Title)</legend>
+    <dl>@Html.DisplayNameFor(model => model.PhotoUrl)
+    </dl>
+	<dl>        		
+		<dd>
+            <img src="@Model.PhotoUrl" title="@Model.Title" />
+		</dd>
+	</dl>
+</fieldset>
+}    
+<p>
+    @Html.ActionLink("Back to Journal", "Status")
+</p>

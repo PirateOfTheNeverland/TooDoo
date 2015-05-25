@@ -1,19 +1,20 @@
-﻿@model IEnumerable<TooDooSvc.Persistence.FixItTask>
+﻿@model IEnumerable<TooDooWebRole.Models.TooDooEntry>
 
 @{
-    ViewBag.Title = "Below is the status on TooDoos you've opened";
+    ViewBag.Title = "Below is the status of TooDoos you've opened";
 }
 
-<h2>TooDoos You've Opened</h2>
+<h2>TooDoos you've assigned</h2>
 
 <p>
-    Below is the status of TooDoos you've already opened:
+    Track the progress of your assignments and reward (generously?) those who fulfilled their tasks
 </p>
 <table class="table table-striped">
     <tr>
         <th>Thing TooDoo</th>
         <th>Assigned To</th>
         <th>Status</th>
+        <th>Creation date</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -32,6 +33,9 @@
             else {
                 <span>Open</span>   
             }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
         </td>
     </tr>
 }

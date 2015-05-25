@@ -9,6 +9,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Microsoft.Practices.Unity;
 
 namespace TooDooWebRole
 {
@@ -17,6 +18,8 @@ namespace TooDooWebRole
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        //private static IUnityContainer _container;
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -31,7 +34,18 @@ namespace TooDooWebRole
             PhotoService photoService = new PhotoService(new Logger());
             photoService.CreateAndConfigureAsync();
 
+            //_container = new UnityContainer();
+            //_container.RegisterType<IPhotoService, PhotoService>();
+            //_container.RegisterType<TooDooWebRole.Controllers.TasksController>();
+            //_container.RegisterType<TooDooWebRole.Controllers.DashboardController>();
+            //_container.RegisterType<TooDooWebRole.Controllers.FriendsController>();
+            //_container.RegisterType<TooDooWebRole.Controllers.HomeController>();
+
+            //DependencyResolver.SetResolver(new IoCContainer(_container));
             DbConfiguration.SetConfiguration(new TooDooSvc.Persistence.EFConfiguration());
         }
+
+        
+
     }
 }

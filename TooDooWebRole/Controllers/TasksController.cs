@@ -116,5 +116,17 @@ namespace TooDooWebRole.Controllers
         {
             return View();
         }
+
+        public async Task<ActionResult> ViewFixed(int id)
+        {
+            TooDooEntry toodoo = await manager.FindTooDooByIdAsync(id);
+
+            if (toodoo == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(toodoo);
+        }
     }
 }

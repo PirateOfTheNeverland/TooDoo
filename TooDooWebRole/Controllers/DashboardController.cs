@@ -1,8 +1,13 @@
 ﻿using TooDooSvc.Persistence;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
-
+using System.Collections.Generic;
 using TooDooWebRole.Models;
+using Microsoft.Practices.Unity;
 
 namespace TooDooWebRole.Controllers
 {
@@ -11,10 +16,25 @@ namespace TooDooWebRole.Controllers
     {
         private readonly TooDooManagement manager = null;
 
-        public DashboardController() { manager = new TooDooManagement(); }
-        public DashboardController(TooDooManagement toodooManager)
+        private IPhotoService photoService = null;
+
+        
+        public DashboardController(TooDooManagement toodooManager, IPhotoService photoStore)
         {
-            manager = toodooManager;
+            manager = new TooDooManagement();
+            photoService = photoStore;
+        }
+
+        public DashboardController(IPhotoService photoStore)
+        {
+            manager = new TooDooManagement();
+            photoService = photoStore;
+        }
+
+        public DashboardController() 
+        { 
+            manager = new TooDooManagement(); 
+            photoService = new TooDooSvc.Persistence.PhotoService(new TooDooSvc.Logging.Logger()); 
         }
 
         //
@@ -64,7 +84,7 @@ namespace TooDooWebRole.Controllers
         // POST: /Dashboard/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(int id, [Bind(Include = "CreatedBy,Owner,Title,Notes,PhotoUrl,IsDone,CreatedDate,LastModifiedDate")]FormCollection form)
+        public async Task<ActionResult> Edit(int id, [Bind(Include = "CreatedBy,Owner,Title,Notes,PhotoUrl,IsDone,CreatedDate,LastModifiedDate,Report,ReportPhotoUrl")]FormCollection form, HttpPostedFileBase photo)
         {
             TooDooEntry toodoo = await manager.FindTooDooByIdAsync(id);
 
@@ -73,6 +93,8 @@ namespace TooDooWebRole.Controllers
             {
                return HttpNotFound();
             }
+
+            toodoo.ReportPhotoUrl = await photoService.UploadPhotoAsync(photo);
 
             if (TryUpdateModel(toodoo, form))
             {

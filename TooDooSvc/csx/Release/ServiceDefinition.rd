@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TooDooSvc" generation="1" functional="0" release="0" Id="0d7fe849-aa98-4edc-8298-47fcb26c6600" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
+<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TooDooSvc" generation="1" functional="0" release="0" Id="256321b9-b509-4002-aebd-a39438e1738f" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
   <groups>
     <group name="TooDooSvcGroup" generation="1" functional="0" release="0">
       <componentports>
@@ -42,7 +42,7 @@
       </maps>
       <components>
         <groupHascomponents>
-          <role name="TooDooWebRole" generation="1" functional="0" release="0" software="C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDooSvc\csx\Release\roles\TooDooWebRole" entryPoint="base\x86\WaHostBootstrapper.exe" parameters="base\x86\WaIISHost.exe " memIndex="-1" hostingEnvironment="frontendadmin" hostingEnvironmentVersion="2">
+          <role name="TooDooWebRole" generation="1" functional="0" release="0" software="C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\csx\Release\roles\TooDooWebRole" entryPoint="base\x86\WaHostBootstrapper.exe" parameters="base\x86\WaIISHost.exe " memIndex="-1" hostingEnvironment="frontendadmin" hostingEnvironmentVersion="2">
             <componentports>
               <inPort name="Endpoint1" protocol="http" portRanges="80" />
             </componentports>
@@ -70,9 +70,9 @@
     </group>
   </groups>
   <implements>
-    <implementation Id="ce56e09e-05bc-48cc-9e06-ecf9215d4cb8" ref="Microsoft.RedDog.Contract\ServiceContract\TooDooSvcContract@ServiceDefinition">
+    <implementation Id="164c4016-35a2-4fe9-adc7-f26274226a7a" ref="Microsoft.RedDog.Contract\ServiceContract\TooDooSvcContract@ServiceDefinition">
       <interfacereferences>
-        <interfaceReference Id="1f509908-ac4d-49d4-b915-0baa1e3a8c03" ref="Microsoft.RedDog.Contract\Interface\TooDooWebRole:Endpoint1@ServiceDefinition">
+        <interfaceReference Id="460f116c-3bf4-4ae4-a578-d30d91ecab03" ref="Microsoft.RedDog.Contract\Interface\TooDooWebRole:Endpoint1@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/TooDooSvc/TooDooSvcGroup/TooDooWebRole:Endpoint1" />
           </inPort>

@@ -4,7 +4,8 @@
     ViewBag.Title = "Edit";
 }
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -16,7 +17,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
 			<div class="controls">
-				@Html.EditorFor(model => model.Title)
+				@Html.DisplayTextFor(model => model.Title)
 				@Html.ValidationMessageFor(model => model.Title, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -24,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Notes, new { @class = "control-label col-md-2" })
 			<div class="controls">
-				@Html.TextAreaFor(model => model.Notes)
+				@Html.DisplayTextFor(model => model.Notes)
 				@Html.ValidationMessageFor(model => model.Notes, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -35,6 +36,21 @@
 				@Html.EditorFor(model => model.IsDone)
 				@Html.ValidationMessageFor(model => model.IsDone, null, new { @class = "help-inline" })
                 @Html.HiddenFor(model => model.LastModifiedDate, new { Value = DateTime.Now })
+			</div>
+		</div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Report, new { @class = "control-label col-md-2" })
+			<div class="controls">
+				@Html.TextAreaFor(model => model.Report)
+				@Html.ValidationMessageFor(model => model.Report, null, new { @class = "help-inline" })
+			</div>
+		</div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="photo">Report attachment</label>
+			<div class="col-md-10">
+                <input type="file" name="photo" />
 			</div>
 		</div>
 

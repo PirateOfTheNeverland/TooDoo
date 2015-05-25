@@ -26,7 +26,7 @@
     </ConfigurationSettings>
     <Contents>
       <Content destination=".\">
-        <SourceDirectory path="C:\Users\EyeLESS\Documents\Visual Studio 2012\Projects\TooDooSvc\TooDooSvc\rcf\Release\TooDooWebRoleContent\" />
+        <SourceDirectory path="C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\rcf\Release\TooDooWebRoleContent\" />
       </Content>
     </Contents>
   </WebRole>

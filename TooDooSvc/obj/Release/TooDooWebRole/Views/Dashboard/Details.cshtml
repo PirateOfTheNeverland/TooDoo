@@ -1,52 +1,46 @@
-@model TooDooSvc.Persistence.FixItTask
+@model TooDooWebRole.Models.TooDooEntry
 
 @{
     ViewBag.Title = "Details";
 }
+<table class="table table-striped">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Title)</th>
+        <td>
+            @Html.DisplayFor(model => model.Title)
+        </td>
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.CreatedBy)</th>
+        <td>
+            @Html.DisplayFor(model => model.CreatedBy)
+        </td>
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Notes)</th>
+        <td>
+            @Html.DisplayFor(model => model.Notes)
+        </td>
+    </tr>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.CreatedDate)</th>
+        <td>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </td>
+    </tr>
+</table>
 
 <fieldset>
 	<legend>@Html.DisplayFor(model => model.Title)</legend>
-	<dl>
-
-		<dt>
-			Opened By
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.CreatedBy)
-		</dd>
-
-        <br />
-
-        <dt>
-			@Html.DisplayNameFor(model => model.Title)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Title)
-		</dd>
-
-        <br />
-
-		<dt>
-			@Html.DisplayNameFor(model => model.Notes)
-		</dt>
-
-		<dd>
-			@Html.DisplayFor(model => model.Notes)
-		</dd>
-
-        <br />
-
+	<dl>        		
         @if(Model.PhotoUrl != null) {
 		    <dd>
                 <img src="@Model.PhotoUrl" title="@Model.Title" />
 		    </dd>
         }
-
 	</dl>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.FixItTaskId }) |
+    @Html.ActionLink("Edit", "Edit", new { id=Model.TooDooId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

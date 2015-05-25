@@ -9,6 +9,8 @@
 <p>
     Track the progress of your assignments and reward (generously?) those who fulfilled their tasks
 </p>
+<a href="/Tasks/Create">Create a New TooDoo</a>
+<br /><br /> 
 <table class="table table-striped">
     <tr>
         <th>Thing TooDoo</th>
@@ -18,28 +20,41 @@
     </tr>
 
 @foreach (var item in Model) {
+    if (item.IsDone)
+    {
     <tr>
         
+        <td style="background-color: #00ff00;">
+            @Html.ActionLink(item.Title, "ViewFixed", new { id=item.TooDooId }, null)          
+        </td>
+        <td style="background-color: #00ff00;">
+            @Html.DisplayFor(modelItem => item.Owner)
+        </td>
+        <td style="background-color: #00ff00;">
+            <span>Fixed</span>
+        </td>
+        <td style="background-color: #00ff00;">
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+    </tr>
+    }
+    else
+    {
+    <tr>        
         <td>
-            @Html.DisplayFor(modelItem => item.Title)
+            @Html.DisplayFor(modelItem => item.Title)             
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Owner)
         </td>
         <td>
-            @if (item.IsDone) {
-                <span>Fixed</span>
-            }
-            else {
-                <span>Open</span>   
-            }
+            <span>Open</span>   
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreatedDate)
         </td>
     </tr>
+    }
 }
 
 </table>
-
-<a href="/Tasks/Create">Create a New TooDoo</a>
