@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TooDooSvc" generation="1" functional="0" release="0" Id="256321b9-b509-4002-aebd-a39438e1738f" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
+<serviceModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="TooDooSvc" generation="1" functional="0" release="0" Id="731590e4-f324-4204-8dfd-1dfed0665d89" dslVersion="1.2.0.0" xmlns="http://schemas.microsoft.com/dsltools/RDSM">
   <groups>
     <group name="TooDooSvcGroup" generation="1" functional="0" release="0">
       <componentports>
@@ -70,9 +70,9 @@
     </group>
   </groups>
   <implements>
-    <implementation Id="164c4016-35a2-4fe9-adc7-f26274226a7a" ref="Microsoft.RedDog.Contract\ServiceContract\TooDooSvcContract@ServiceDefinition">
+    <implementation Id="20ca9abe-1868-45f8-923b-a0e37d0ac6fd" ref="Microsoft.RedDog.Contract\ServiceContract\TooDooSvcContract@ServiceDefinition">
       <interfacereferences>
-        <interfaceReference Id="460f116c-3bf4-4ae4-a578-d30d91ecab03" ref="Microsoft.RedDog.Contract\Interface\TooDooWebRole:Endpoint1@ServiceDefinition">
+        <interfaceReference Id="f676abb0-8d40-4ed9-ba53-4bdfeb657f7a" ref="Microsoft.RedDog.Contract\Interface\TooDooWebRole:Endpoint1@ServiceDefinition">
           <inPort>
             <inPortMoniker name="/TooDooSvc/TooDooSvcGroup/TooDooWebRole:Endpoint1" />
           </inPort>

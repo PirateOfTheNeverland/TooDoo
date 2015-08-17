@@ -3,35 +3,35 @@
 @{
     ViewBag.Title = "Edit";
 }
-
 @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    <h2 style="max-width:500px;word-break:break-all">@Html.DisplayFor(model => model.Title)</h2>
+    <p>
+        Assigned to you by: <i>@Html.DisplayFor(model => model.CreatedBy)</i>
+    </p>
+    <br />
 
     <fieldset class="form-horizontal">
         <legend>Update TooDoo</legend>
 
         @Html.HiddenFor(model => model.TooDooId)
+        @Html.HiddenFor(model => model.Title)
+        @Html.HiddenFor(model => model.IsRewarded)
 
+        <table class="table table-striped">
+            <tr>
+                <th style="width:180px;text-align:center;max-width:180px;word-break:break-all;">
+                    @Html.DisplayNameFor(model => model.Notes)
+                </th>
+                <td style="text-align:start;max-width:500px;word-break:break-all;">
+                    @Html.DisplayFor(model => model.Notes)
+                </td>
+            </tr>
+        </table>
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
-			<div class="controls">
-				@Html.DisplayTextFor(model => model.Title)
-				@Html.ValidationMessageFor(model => model.Title, null, new { @class = "help-inline" })
-			</div>
-		</div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Notes, new { @class = "control-label col-md-2" })
-			<div class="controls">
-				@Html.DisplayTextFor(model => model.Notes)
-				@Html.ValidationMessageFor(model => model.Notes, null, new { @class = "help-inline" })
-			</div>
-		</div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2" for="IsDone">Fixed</label>
+            <label class="control-label col-md-2" for="IsDone">Done</label>
 			<div class="controls">
 				@Html.EditorFor(model => model.IsDone)
 				@Html.ValidationMessageFor(model => model.IsDone, null, new { @class = "help-inline" })
@@ -41,10 +41,10 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Report, new { @class = "control-label col-md-2" })
-			<div class="controls">
-				@Html.TextAreaFor(model => model.Report)
-				@Html.ValidationMessageFor(model => model.Report, null, new { @class = "help-inline" })
-			</div>
+		<div class="controls">
+                @Html.TextAreaFor(model => model.Report, new { @style = "height:150px;width:100%;word-break:break-all"})
+                @Html.ValidationMessageFor(model => model.Report, null, new { @class = "help-inline" })
+            </div>
 		</div>
 
         <div class="form-group">

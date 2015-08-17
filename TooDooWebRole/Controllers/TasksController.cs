@@ -13,7 +13,9 @@ namespace TooDooWebRole.Controllers
     [Authorize]
     public class TasksController : Controller
     {
+        private static int shortNoteMaxLength = 301;
         private readonly TooDooManagement manager = null;
+        private readonly AccountManagement accmanager = null;
 
         private IFixItTaskRepository fixItRepository = null;
         private IPhotoService photoService = null;
@@ -25,6 +27,7 @@ namespace TooDooWebRole.Controllers
             photoService = photoStore;
             this.queueManager = queueManager;
             manager = new TooDooManagement();
+            accmanager = new AccountManagement();
         }
 
         public TasksController()
@@ -33,12 +36,16 @@ namespace TooDooWebRole.Controllers
             photoService = null;
             this.queueManager = null;
             manager = new TooDooManagement();
+            accmanager = new AccountManagement();
         }
 
         // GET: /FixIt/
         public async Task<ActionResult> Status()
         {
             string currentUser = User.Identity.Name;
+            Session["HasNewFriend"] = await accmanager.HasNewFriend(currentUser);
+            Session["HasNewTooDoo"] = await accmanager.HasNewTooDoo(currentUser);
+
             var result = await manager.FindToodoosByCreatorAsync(currentUser);
 
             return View(result);
@@ -98,10 +105,20 @@ namespace TooDooWebRole.Controllers
 //                {
 //                    var IsBlocked = db.FriendEntries.SqlQuery("SELECT * FROM dbo.FriendEntries WHERE Name=@p0 AND Owner=@p1",
 //                        new object[] { new SqlParameter("p0", fixittask.CreatedBy), new SqlParameter("p1", fixittask.Owner) });
-                    //toodoo.CreatedBy = User.Identity.Name;
+                    //form.CreatedBy = User.Identity.Name;
+                if (toodoo.Notes != null)
+                {
+                    if (toodoo.Notes.Length < shortNoteMaxLength) toodoo.ShortNotes = toodoo.Notes;
+                    else toodoo.ShortNotes = toodoo.Notes.Substring(0, 296) + " ...";
+                }
                     toodoo.PhotoUrl = await photoService.UploadPhotoAsync(photo);
 
                     await manager.CreateAsync(toodoo);
+                    // NOtify user about new TooDoo
+                    UserProfile up = await accmanager.FindUserByNameAsync(toodoo.Owner);
+
+                    up.HasNewTooDoo = true;
+                    await accmanager.UpdateAsync(up);
 
                     return RedirectToAction("Success");
 //                }

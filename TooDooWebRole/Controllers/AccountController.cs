@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -17,6 +18,17 @@ namespace TooDooWebRole.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+        private readonly AccountManagement accmanager = null;
+
+        public AccountController(AccountManagement accManager)
+        {
+            accmanager = accManager;
+        }
+
+        public AccountController()
+        {
+            accmanager = new AccountManagement();
+        }
         //
         // GET: /Account/Login
 
@@ -33,10 +45,13 @@ namespace TooDooWebRole.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginModel model, string returnUrl)
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
+                Session["HasNewFriend"] = await accmanager.HasNewFriend(model.UserName);
+                Session["HasNewTooDoo"] = await accmanager.HasNewTooDoo(model.UserName);
+                //ViewBag.HasNewFriend = await accmanager.HasNewFriend(model.UserName);
                 return RedirectToLocal(returnUrl);
             }
 
@@ -53,7 +68,8 @@ namespace TooDooWebRole.Controllers
         public ActionResult LogOff()
         {
             WebSecurity.Logout();
-
+            Session["HasNewFriend"] = null;
+            Session["HasNewTooDoo"] = null;
             return RedirectToAction("Index", "Home");
         }
 
@@ -79,7 +95,10 @@ namespace TooDooWebRole.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password, 
+                        new 
+                        { HasNewFriend = false,
+                          HasNewTooDoo = false});
                     WebSecurity.Login(model.UserName, model.Password);
                     return RedirectToAction("Index", "Home");
                 }

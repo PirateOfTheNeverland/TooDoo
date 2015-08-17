@@ -16,7 +16,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
-				@Html.EditorFor(model => model.Title)
+				@*@Html.EditorFor(model => model.Title, new { @style = "width:600px"})*@
+                @Html.TextAreaFor(model => model.Title, new { @style = "width:100%;word-break:break-all"})
 				@Html.ValidationMessageFor(model => model.Title, null, new { @class = "help-inline" })
 			</div>
 		</div>
@@ -24,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Notes, new { @class = "control-label col-md-2" })
 			<div class="col-md-10">
-                @Html.TextAreaFor(model => model.Notes)
+                @Html.TextAreaFor(model => model.Notes, new { @style = "height:150px;width:100%;word-break:break-all"})
 				@Html.ValidationMessageFor(model => model.Notes, null, new { @class = "help-inline" })
 			</div>
 		</div>

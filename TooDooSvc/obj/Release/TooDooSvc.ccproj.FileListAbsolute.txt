@@ -230,6 +230,11 @@ C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\Microsoft.Data.Edm.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\Microsoft.Data.OData.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\Microsoft.Data.Services.Client.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\Microsoft.Practices.ServiceLocation.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\Microsoft.Practices.Unity.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\Microsoft.Practices.Unity.Mvc.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\Microsoft.Web.WebPages.OAuth.dll
@@ -259,6 +264,7 @@ C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\System.Web.WebPages.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\System.Web.WebPages.Razor.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\TooDooWebRole.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\WebActivatorEx.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\WebGrease.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\WebMatrix.Data.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\bin\WebMatrix.WebData.dll
@@ -369,6 +375,7 @@ C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Vie
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Views\Dashboard\Edit.cshtml
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Views\Dashboard\Index.cshtml
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Views\Friends\Create.cshtml
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Views\Friends\Edit.cshtml
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Views\Friends\Index.cshtml
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Views\Home\About.cshtml
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Views\Home\Contact.cshtml
@@ -379,6 +386,7 @@ C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Vie
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Views\Tasks\Create.cshtml
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Views\Tasks\Status.cshtml
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Views\Tasks\Success.cshtml
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Views\Tasks\ViewFixed.cshtml
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Views\Web.config
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Views\_ViewStart.cshtml
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooSvc\obj\Release\TooDooWebRole\Web.config

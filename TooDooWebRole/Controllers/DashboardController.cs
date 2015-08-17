@@ -15,6 +15,7 @@ namespace TooDooWebRole.Controllers
     public class DashboardController : Controller
     {
         private readonly TooDooManagement manager = null;
+        private readonly AccountManagement accmanager = null;
 
         private IPhotoService photoService = null;
 
@@ -22,18 +23,21 @@ namespace TooDooWebRole.Controllers
         public DashboardController(TooDooManagement toodooManager, IPhotoService photoStore)
         {
             manager = new TooDooManagement();
+            accmanager = new AccountManagement();
             photoService = photoStore;
         }
 
         public DashboardController(IPhotoService photoStore)
         {
             manager = new TooDooManagement();
+            accmanager = new AccountManagement();
             photoService = photoStore;
         }
 
         public DashboardController() 
         { 
-            manager = new TooDooManagement(); 
+            manager = new TooDooManagement();
+            accmanager = new AccountManagement();
             photoService = new TooDooSvc.Persistence.PhotoService(new TooDooSvc.Logging.Logger()); 
         }
 
@@ -42,7 +46,15 @@ namespace TooDooWebRole.Controllers
         public async Task<ActionResult> Index()
         {
             string currentUser = User.Identity.Name;
+            Session["HasNewFriend"] = await accmanager.HasNewFriend(currentUser);
+
             var result = await manager.FindOpenToodoosByOwnerAsync(currentUser);
+
+            // Notification about new TooDoos goes down here
+            UserProfile up = await accmanager.FindUserByNameAsync(currentUser);
+            up.HasNewTooDoo = false;
+            await accmanager.UpdateAsync(up);
+            if (Session["HasNewTooDoo"] != null) Session["HasNewTooDoo"] = null;
 
             return View(result);
         }

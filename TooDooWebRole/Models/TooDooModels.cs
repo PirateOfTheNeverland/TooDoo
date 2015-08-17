@@ -41,13 +41,18 @@ namespace TooDooWebRole.Models
         [StringLength(80)]
         [Display(Name="Title")]
         public string Title { get; set; }
+        [StringLength(300)]
+        [Display(Name = "Notes")]
+        public string ShortNotes { get; set; }
         [StringLength(1000)]
         [Display(Name="Notes")]
         public string Notes { get; set; }
         [StringLength(200)]
         [Display(Name = "TooDoo attachment")]
         public string PhotoUrl { get; set; }
+        [Display(Name = "Done")]
         public bool IsDone { get; set; }
+        public bool IsRewarded { get; set; }
         [Required]
         [Display(Name="Creation date")]
         public DateTime CreatedDate { get; set; }

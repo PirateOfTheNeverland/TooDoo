@@ -1,45 +1,64 @@
 ﻿@model IEnumerable<TooDooWebRole.Models.TooDooEntry>
 
 @{
-    ViewBag.Title = "Below is the status of TooDoos you've opened";
+    ViewBag.Title = "Below is the status of TooDoos you've assigned to others";
 }
-
-<h2>TooDoos you've assigned</h2>
-
 <p>
-    Track the progress of your assignments and reward (generously?) those who fulfilled their tasks
+    @Html.ActionLink("Create a new TooDoo", "Create", "Tasks")
 </p>
-<table class="table table-striped">
-    <tr>
-        <th>Thing TooDoo</th>
-        <th>Assigned To</th>
-        <th>Status</th>
-        <th>Creation date</th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Owner)
-        </td>
-        <td>
-            @if (item.IsDone) {
-                <span>Fixed</span>
-            }
-            else {
-                <span>Open</span>   
-            }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-    </tr>
+<h2>TooDoos you've created</h2>
+@if (!Model.Any()) {
+    <p>You haven't created any TooDoos yet so why don't go ahead and try it?</p>
+    <br />
 }
-
-</table>
-
-<a href="/Tasks/Create">Create a New TooDoo</a>
+else {
+    <p>Track the progress of your assignments and reward (generously?) those who fulfilled their tasks</p>
+    <br />
+    <table class="table table-striped">
+        <tr>
+            <th>Title</th>
+            <th>Assigned To</th>
+            <th>Status</th>
+            <th>Creation date</th>
+        </tr>
+    @foreach (var item in Model) {
+        if (item.IsDone)
+        {
+            <tr>
+                <td style="background-color: #00ff00;">
+                    @Html.ActionLink(item.Title, "ViewFixed", new { id=item.TooDooId }, null)          
+                </td>
+                <td style="width:100px;text-align:center;max-width:100px;word-break:break-all;background-color: #00ff00;">
+                    @Html.DisplayFor(modelItem => item.Owner)
+                </td>
+                <td style="width:100px;text-align:center;max-width:100px;word-break:break-all;background-color: #00ff00;">
+                    <span>Fixed</span>
+                </td>
+                <td style="width:180px;text-align:center;max-width:180px;word-break:break-all;background-color: #00ff00;">
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>        
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)             
+                </td>
+                <td style="width:180px;text-align:center;max-width:100px;word-break:break-all;">
+                    @Html.DisplayFor(modelItem => item.Owner)
+                </td>
+                <td style="width:180px;text-align:center;max-width:100px;word-break:break-all;">
+                    <span>Open</span>   
+                </td>
+                <td style="width:180px;text-align:center;max-width:100px;word-break:break-all;">
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+            </tr>
+        }
+    }
+    </table>
+    <p>
+    @Html.ActionLink("Create a new TooDoo", "Create", "Tasks")
+    </p>
+}

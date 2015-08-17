@@ -228,3 +228,15 @@ C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\bin\zh-Hant\System.Spatia
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\obj\Release\TooDooWebRole.csprojResolveAssemblyReference.cache
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\obj\Release\TooDooWebRole.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\obj\Release\TooDooWebRole.pdb
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\bin\Microsoft.Practices.ServiceLocation.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\bin\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\bin\Microsoft.Practices.Unity.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\bin\Microsoft.Practices.Unity.Mvc.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\bin\WebActivatorEx.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\bin\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\bin\Microsoft.Practices.ServiceLocation.xml
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\bin\Microsoft.Practices.Unity.xml
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\bin\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\bin\Microsoft.Practices.Unity.Mvc.xml
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDooWebRole\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml

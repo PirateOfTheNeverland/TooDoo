@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TooDooSvc.Persistence;
@@ -12,16 +13,28 @@ namespace TooDooWebRole.Controllers
     [Authorize]
     public class FriendsController : Controller
     {
+        private readonly FriendManagement manager = null;
+        private readonly AccountManagement accmanager = null;
+
+        public FriendsController(FriendManagement friendManager)
+        {
+            manager = friendManager;
+        }
+
         public FriendsController()
         {
+            manager = new FriendManagement();
+            accmanager = new AccountManagement();
         }
 
         //
         // GET: /Friends/
 
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
             string currentUser = User.Identity.Name;
+            Session["HasNewTooDoo"] = await accmanager.HasNewTooDoo(currentUser);
+
             List<FriendEntry> items = new List<FriendEntry>();
 
             using (FriendContext db = new FriendContext())
@@ -57,6 +70,82 @@ namespace TooDooWebRole.Controllers
             return View();
         }
 
+        public async Task<ActionResult> Notification(int id)
+        {
+            Session["HasNewFriend"] = null;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Notification([Bind(Include = "FriendId,Owner,Name,Notes,IsDeleted,IsBlocked")]FriendEntry form)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    form.Owner = User.Identity.Name;
+
+                    using (FriendContext db = new FriendContext())
+                    using (UsersContext dbUsers = new UsersContext())
+                    {
+                        string sql = "SELECT * FROM dbo.FriendEntries WHERE Name = @p0 AND Owner = @p1";
+                        var UserExists = dbUsers.UserProfiles.SqlQuery("SELECT * FROM dbo.UserProfile WHERE UserName = @p0", form.Name);
+                        var FriendExists = db.FriendEntries.SqlQuery(sql,
+                            new object[] { new SqlParameter("p0", form.Name), 
+                                           new SqlParameter("p1", form.Owner)});
+                        int i = UserExists.Count();
+                        int j = FriendExists.Count();
+
+                        if (i > 0) // If User with specified name exists...
+                        {
+                            if (j > 0) // If there's a form entry for this user
+                            {
+                                FriendEntry fr = await manager.FindFriendByNameAndOwnerAsync(form.Name, form.Owner);
+
+                                fr.IsDeleted = false;
+                                fr.IsBlocked = false;
+                                fr.Notes = form.Notes;
+                                await manager.UpdateAsync(fr);
+
+                                // update form entry
+                                //string sql1 = "UPDATE dbo.FriendEntries SET IsDeleted='false', Notes=@p0 WHERE Name=@p1 AND Owner=@p2";
+                                //var friends = db.Database.ExecuteSqlCommand(sql1,
+                                //    new object[] { new SqlParameter("p0", form.Notes),
+                                //                   new SqlParameter("p1", form.Name), 
+                                //                   new SqlParameter("p2", form.Owner)});
+                            }
+                            else // create a new form entry
+                            {
+                                //ToDo: add notification for user that he has been added
+                                await manager.CreateAsync(form);
+
+                                //Notify user about new friend
+                                UserProfile up = await accmanager.FindUserByNameAsync(form.Name);
+
+                                up.HasNewFriend = true;
+                                await accmanager.UpdateAsync(up);
+                            }
+                        }
+                        else // return. No such user
+                        {
+                            ViewBag.Owner = form.Owner;
+                            return View();
+                        }
+                    }
+
+                    return RedirectToAction("Index");
+                }
+                ViewBag.Owner = form.Owner;
+                return View();
+            }
+            catch
+            {
+                ViewBag.Owner = form.Owner;
+                return View();
+            }
+        }
+
         //
         // GET: /Friends/Create
 
@@ -72,58 +161,70 @@ namespace TooDooWebRole.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FriendId,Owner,Name,Notes,IsDeleted,IsBlocked")]FriendEntry friend)
+        public async Task<ActionResult> Create([Bind(Include = "FriendId,Owner,Name,Notes,IsDeleted,IsBlocked")]FriendEntry form)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    friend.Owner = User.Identity.Name;
+                    form.Owner = User.Identity.Name;
 
                     using (FriendContext db = new FriendContext())
                     using (UsersContext dbUsers = new UsersContext())
                     {
                         string sql = "SELECT * FROM dbo.FriendEntries WHERE Name = @p0 AND Owner = @p1";
-                        var UserExists = dbUsers.UserProfiles.SqlQuery("SELECT * FROM dbo.UserProfile WHERE UserName = @p0", friend.Name);
+                        var UserExists = dbUsers.UserProfiles.SqlQuery("SELECT * FROM dbo.UserProfile WHERE UserName = @p0", form.Name);
                         var FriendExists = db.FriendEntries.SqlQuery(sql, 
-                            new object[] { new SqlParameter("p0", friend.Name), 
-                                           new SqlParameter("p1", friend.Owner)});
+                            new object[] { new SqlParameter("p0", form.Name), 
+                                           new SqlParameter("p1", form.Owner)});
                         int i = UserExists.Count();
                         int j = FriendExists.Count();
 
                         if (i > 0) // If User with specified name exists...
                         {
-                            if (j > 0) // If there's a friend entry for this user
+                            if (j > 0) // If there's a form entry for this user
                             {
-                                // update friend entry
-                                string sql1 = "UPDATE dbo.FriendEntries SET IsDeleted='false', Notes=@p0 WHERE Name=@p1 AND Owner=@p2";
-                                var friends = db.Database.ExecuteSqlCommand(sql1,
-                                    new object[] { new SqlParameter("p0", friend.Notes),
-                                                   new SqlParameter("p1", friend.Name), 
-                                                   new SqlParameter("p2", friend.Owner)});
-                            }
-                            else // create a new friend entry
-                            {
-                                var friends = db.FriendEntries.Add(friend);
+                                FriendEntry fr = await manager.FindFriendByNameAndOwnerAsync(form.Name, form.Owner);
 
-                                db.SaveChanges();
+                                fr.IsDeleted = false;
+                                fr.IsBlocked = false;
+                                fr.Notes = form.Notes;
+                                await manager.UpdateAsync(fr);
+
+                                // update form entry
+                                //string sql1 = "UPDATE dbo.FriendEntries SET IsDeleted='false', Notes=@p0 WHERE Name=@p1 AND Owner=@p2";
+                                //var friends = db.Database.ExecuteSqlCommand(sql1,
+                                //    new object[] { new SqlParameter("p0", form.Notes),
+                                //                   new SqlParameter("p1", form.Name), 
+                                //                   new SqlParameter("p2", form.Owner)});
+                            }
+                            else // create a new form entry
+                            {
+                                //ToDo: add notification for user that he has been added
+                                await manager.CreateAsync(form);
+
+                                //Notify user about new friend
+                                UserProfile up = await accmanager.FindUserByNameAsync(form.Name);
+
+                                up.HasNewFriend = true;
+                                await accmanager.UpdateAsync(up);
                             }
                         }
                         else // return. No such user
                         {
-                            ViewBag.Owner = friend.Owner;
+                            ViewBag.Owner = form.Owner;
                             return View();
                         }
                     }
 
                     return RedirectToAction("Index");
                 }
-                ViewBag.Owner = friend.Owner;
+                ViewBag.Owner = form.Owner;
                 return View();
             }
             catch
             {
-                ViewBag.Owner = friend.Owner;
+                ViewBag.Owner = form.Owner;
                 return View();
             }
         }
@@ -131,27 +232,45 @@ namespace TooDooWebRole.Controllers
         //
         // GET: /Friends/Edit/5
 
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            FriendEntry friend = await manager.FindFriendByIdAsync(id);
+            if (friend == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Verify logged in user owns this FixIt task.
+            if (User.Identity.Name != friend.Owner)
+            {
+                return HttpNotFound();
+            }
+
+            return View(friend);
         }
 
         //
         // POST: /Friends/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(int id, [Bind(Include = "FriendId,Owner,Name,Notes,IsDeleted,IsBlocked")]FormCollection collection)
         {
-            try
-            {
-                // TODO: Add update logic here
+            FriendEntry friend = await manager.FindFriendByIdAsync(id);
 
+            // Verify logged in user owns this FixIt task.
+            if (User.Identity.Name != friend.Owner)
+            {
+                return HttpNotFound();
+            }
+
+            if (TryUpdateModel(friend, collection))
+            {
+                await manager.UpdateAsync(friend);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            return View(friend);
         }
 
         //

@@ -12,11 +12,6 @@ C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\MyFixIt.Loggin
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\MyFixIt.Logging.pdb
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\EntityFramework.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\EntityFramework.xml
-C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\obj\Debug\TooDooSvc.Logging.csprojResolveAssemblyReference.cache
-C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\obj\Debug\MyFixIt.Logging.dll
-C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\obj\Debug\MyFixIt.Logging.pdb
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\Microsoft.Practices.ServiceLocation.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\Microsoft.Practices.Unity.dll
@@ -30,6 +25,8 @@ C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\System.Web.Web
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\System.Web.WebPages.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\System.Web.WebPages.Razor.dll
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\WebActivatorEx.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\EntityFramework.xml
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\Microsoft.Practices.ServiceLocation.xml
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\Microsoft.Practices.Unity.xml
@@ -42,3 +39,6 @@ C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\System.Web.Raz
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\System.Web.WebPages.xml
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\obj\Debug\MyFixIt.Logging.dll
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\obj\Debug\MyFixIt.Logging.pdb
+C:\Users\EyeLESS\Documents\GitHub\TooDoo\TooDoo.Logging\obj\Debug\TooDooSvc.Logging.csprojResolveAssemblyReference.cache

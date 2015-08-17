@@ -20,9 +20,37 @@
                     </section>
                     <nav>
                         <ul id="menu">
-                            <li>@Html.ActionLink("Friends", "Index", "Friends")</li>
+                            @if (@Session["HasNewFriend"] != null)
+                            {
+                                if ((bool)@Session["HasNewFriend"])
+                                {
+                                    <li style="background-color: #09f597;">@Html.ActionLink("New friend!", "Notification", "Friends")</li>
+                                }
+                                else
+                                {
+                                    <li>@Html.ActionLink("Friends", "Index", "Friends")</li>
+                                }
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Friends", "Index", "Friends")</li>
+                            }
                             <li>@Html.ActionLink("Journal", "Status", "Tasks")</li>
-                            <li>@Html.ActionLink("Active quests", "Index", "Dashboard")</li>                            
+                            @if (@Session["HasNewTooDoo"] != null)
+                            {
+                                if ((bool)@Session["HasNewTooDoo"])
+                                {
+                                    <li style="background-color: #09f597;">@Html.ActionLink("New quest!", "Index", "Dashboard")</li>
+                                }
+                                else
+                                {
+                                    <li>@Html.ActionLink("Active quests", "Index", "Dashboard")</li>
+                                }
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Active quests", "Index", "Dashboard")</li>
+                            }                            
                         </ul>
                     </nav>
                 </div>

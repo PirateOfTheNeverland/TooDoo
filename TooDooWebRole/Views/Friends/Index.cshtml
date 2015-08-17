@@ -3,17 +3,16 @@
 @{
     ViewBag.Title = "Here's your buddy list";
 }
-
+<p>
+    @Html.ActionLink("Add buddy", "Create")
+</p>
 <h2>List of your buddies</h2>
-
 @if (!Model.Any()) {
-    <br />
-    <div>You don't have friends!!! =) But it's OK, go ahead and add you first buddy!</div>
+    <p>You don't have friends!!! =) But it's OK, go ahead and add you first buddy!</p>
     <br />
 }
 else {
-<br />
-<div>Let's see who we have here:</div>
+<p>Let's see who we have here:</p>
 <br />
 <table class="table table-striped">
     <tr>
@@ -21,36 +20,34 @@ else {
         <th>Notes</th>
         <th></th>
     </tr>
-
 @foreach (var item in Model) {
     <tr>
         @if (@item.IsBlocked)
          {
-            <td style="background-color: #108080;">
-                @Html.DisplayFor(modelItem => item.Name)
+            <td style="background-color: #108080;width:180px;max-width:180px;word-break:break-all;">
+                @*@Html.DisplayFor(modelItem => item.Name)*@
+                @Html.ActionLink(item.Name, "Edit", new { id=item.FriendId }, null)
             </td>
             <td style="background-color: #108080;">
                 @Html.DisplayFor(modelItem => item.Notes)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.FriendId }, null) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.FriendId }, null) |
-                @Html.ActionLink("Unblock", "Unblock", new { id=item.FriendId }, null) 
+            <td style="width:180px;text-align:center;max-width:180px;word-break:break-all;">
+                @Html.ActionLink("Unblock", "Unblock", new { id=item.FriendId }, null) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.FriendId }, null)  
             </td>
         }
          else
-        {
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
+        { 
+            <td style="width:180px;max-width:180px;word-break:break-all;">
+                @*@Html.DisplayFor(modelItem => item.Name)*@
+                @Html.ActionLink(item.Name, "Edit", new { id=item.FriendId }, null)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Notes)
             </td>            
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.FriendId }, null) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.FriendId }, null) |
-                @Html.ActionLink("Block", "Block", new { id=item.FriendId }, null) 
+            <td style="width:180px;text-align:center;max-width:180px;word-break:break-all;">
+                @Html.ActionLink("Block", "Block", new { id=item.FriendId }, null) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.FriendId }, null) 
             </td>
         }
     </tr>
@@ -58,4 +55,3 @@ else {
 
 </table>
 }
-<a href="/Friends/Create">Add buddy</a>
